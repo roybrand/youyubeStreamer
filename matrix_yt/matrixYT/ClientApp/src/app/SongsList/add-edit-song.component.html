@@ -1,0 +1,35 @@
+﻿<h1 *ngIf="isAddMode">Add Song</h1>
+<h1 *ngIf="!isAddMode">Edit Song</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="songName">Song Name</label>
+            <input type="text" formControlName="songName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.songName.errors }" />
+            <div *ngIf="submitted && f.songName.errors" class="invalid-feedback">
+                <div *ngIf="f.songName.errors.required">Song Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="songUrl">Song Url</label>
+            <input type="text" formControlName="songUrl" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.songUrl.errors }" />
+            <div *ngIf="submitted && f.songUrl.errors" class="invalid-feedback">
+                <div *ngIf="f.songUrl.errors.required">Song Url is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="category">Song Category</label>
+            <input type="text" formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }" />
+            <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                <div *ngIf="f.category.errors.required">Song Category is required</div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/songs" class="btn btn-link">Cancel</a>
+    </div>
+</form>

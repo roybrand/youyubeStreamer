@@ -1,0 +1,47 @@
+<div class='card'>
+    <div class='card-header'>
+      {{pageTitle}}
+    </div>
+    <div class='card-body'>
+      <div class='row'>
+        <div class='col-md-2'>Search repository:</div>
+        <div class='col-md-4'>
+          <input type='text'
+                 [(ngModel)]='repoName' />
+                 <button class='btn btn-primary'
+                (click)='getRepo()'>Save
+                </button>
+        </div>
+      </div>
+      
+      <div class='table-responsive'>
+        <table class='table'
+               *ngIf='items && items.length'>
+          <thead>
+            <tr>
+              <th>
+                 Bookmark 
+              </th>
+              <th>Name</th>
+              <th>Avatar</th>              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let item of items; let i = index; trackBy: trackItem'>
+              <td>
+                <button class='btn btn-primary'
+                (click)='saveRepoSession(item.id,item.name,item.owner.avatar_url)'>bookmark
+                </button>
+              </td>
+              <td>
+                  {{ item.name }}
+              </td>
+              <td>{{ item.owner.avatar_url}}</td>             
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    </div>
+  
+  </div>
